@@ -1,92 +1,31 @@
-# Sistema simples de vidraçaria (CRUD)
-vidros = []
+Glass Management System (CRUD)
 
-def criar_vidro():
-    print("\n--- Cadastro de Vidro ---")
-    nome = input("Nome do vidro: ")
-    tipo = input("Tipo (temperado, comum, laminado): ")
-    preco = float(input("Preço: "))
+Um sistema de gerenciamento de inventário para vidraçarias desenvolvido em **Python**. Este projeto implementa as operações fundamentais de um software de gestão: **C**reate, **R**ead, **U**pdate e **D**elete (CRUD).
 
-    vidro = {
-        "id": len(vidros) + 1,
-        "nome": nome,
-        "tipo": tipo,
-        "preco": preco
-    }
+Sobre o Projeto
+Este script foi desenvolvido para automatizar o controle de estoque de diferentes tipos de vidros (temperado, comum, laminado), permitindo que o usuário tenha um controle preciso sobre preços e especificações técnicas de forma rápida via interface de linha de comando (CLI).
 
-    vidros.append(vidro)
-    print("Vidro cadastrado com sucesso!\n")
+Tecnologias Utilizadas
+* **Python 3.x**: Linguagem base para toda a lógica estruturada.
+* **Dicionários e Listas**: Para simular um banco de dados em memória.
+* **Tratamento de Exceções**: Uso de blocos `try/except` para garantir a estabilidade do software.
 
+Demonstração (Funcionamento)
 
-def listar_vidros():
-    print("\n--- Lista de Vidros ---")
-    if not vidros:
-        print("Nenhum vidro cadastrado.\n")
-        return
+1. Cadastro e Listagem
+Permite o registro dinâmico de novos materiais com atribuição automática de IDs.
+![Gif de Cadastro](path/para/seu/gif-cadastro.gif)
 
-    for v in vidros:
-        print(f"ID: {v['id']} | Nome: {v['nome']} | Tipo: {v['tipo']} | Preço: R${v['preco']}")
-    print()
+2. Atualização e Exclusão
+Gerenciamento flexível de dados existentes, com busca por identificador único.
+![Gif de Update/Delete](path/para/seu/gif-update-delete.gif)
 
-
-def atualizar_vidro():
-    listar_vidros()
-    try:
-        id_busca = int(input("Digite o ID do vidro que deseja atualizar: "))
-
-        for v in vidros:
-            if v["id"] == id_busca:
-                print("Digite os novos dados:")
-                v["nome"] = input("Novo nome: ")
-                v["tipo"] = input("Novo tipo: ")
-                v["preco"] = float(input("Novo preço: "))
-                print("Vidro atualizado!\n")
-                return
-
-        print("ID não encontrado.\n")
-    except:
-        print("Erro ao atualizar.\n")
+  Estrutura de Funções
+O código está modularizado para facilitar futuras integrações com bancos de dados reais (SQL):
+- `criar_vidro()`: Capta entradas do usuário e popula o dicionário.
+- `listar_vidros()`: Itera sobre a lista de objetos e formata a saída.
+- `atualizar_vidro()`: Localiza o registro por ID e sobrescreve os atributos.
+- `deletar_vidro()`: Remove o objeto da lista de dados.
 
 
-def deletar_vidro():
-    listar_vidros()
-    try:
-        id_busca = int(input("Digite o ID do vidro que deseja deletar: "))
-
-        for v in vidros:
-            if v["id"] == id_busca:
-                vidros.remove(v)
-                print("Vidro removido com sucesso!\n")
-                return
-
-        print("ID não encontrado.\n")
-    except:
-        print("Erro ao deletar.\n")
-
-
-def menu():
-    while True:
-        print("==== VIDRAÇARIA ====")
-        print("1 - Cadastrar vidro")
-        print("2 - Listar vidros")
-        print("3 - Atualizar vidro")
-        print("4 - Deletar vidro")
-        print("0 - Sair")
-
-        opcao = input("Escolha: ")
-
-        if opcao == "1":
-            criar_vidro()
-        elif opcao == "2":
-            listar_vidros()
-        elif opcao == "3":
-            atualizar_vidro()
-        elif opcao == "4":
-            deletar_vidro()
-        elif opcao == "0":
-            print("Saindo...")
-            break
-        else:
-            print("Opção inválida.\n")
-
-menu()
+        
