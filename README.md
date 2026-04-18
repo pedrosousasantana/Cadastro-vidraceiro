@@ -10,16 +10,6 @@ Tecnologias Utilizadas
 * **Dicionários e Listas**: Para simular um banco de dados em memória.
 * **Tratamento de Exceções**: Uso de blocos `try/except` para garantir a estabilidade do software.
 
-Demonstração (Funcionamento)
-
-1. Cadastro e Listagem
-Permite o registro dinâmico de novos materiais com atribuição automática de IDs.
-![Gif de Cadastro](path/para/seu/gif-cadastro.gif)
-
-2. Atualização e Exclusão
-Gerenciamento flexível de dados existentes, com busca por identificador único.
-![Gif de Update/Delete](path/para/seu/gif-update-delete.gif)
-
   Estrutura de Funções
 O código está modularizado para facilitar futuras integrações com bancos de dados reais (SQL):
 - `criar_vidro()`: Capta entradas do usuário e popula o dicionário.
