@@ -58,4 +58,4 @@ def menu(): while True: print("==== VIDRAÇARIA ====") print("1 - Cadastrar vidr
         break
     else:
         print("Opção inválida.\n")
-menu
+menu()
