@@ -38,7 +38,7 @@ python crudcodigo.py
 
 
 
-
+# Imagem da aba do cadastro
 <img width="1913" height="972" alt="Captura de tela 2026-04-22 111436" src="https://github.com/user-attachments/assets/139c60e3-3367-4469-86ed-e772d68a457c" />
 
 
