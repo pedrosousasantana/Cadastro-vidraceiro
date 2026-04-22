@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Vidraçaria{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+```
+:root {
+  --azul:    #0a3d62;
+  --ciano:   #00b4d8;
+  --branco:  #f0f4f8;
+  --cinza:   #ccd5e0;
+  --escuro:  #07283f;
+  --danger:  #e63946;
+  --success: #2a9d8f;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--escuro);
+  color: var(--branco);
+  min-height: 100vh;
+}
+
+/* ── HEADER ── */
+header {
+  background: var(--azul);
+  border-bottom: 3px solid var(--ciano);
+  padding: 18px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+header h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.2rem;
+  letter-spacing: 3px;
+  color: var(--ciano);
+}
+header nav a {
+  color: var(--branco);
+  text-decoration: none;
+  margin-left: 22px;
+  font-weight: 600;
+  font-size: .9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color .2s;
+}
+header nav a:hover { color: var(--ciano); }
+
+/* ── MAIN ── */
+main {
+  max-width: 960px;
+  margin: 40px auto;
+  padding: 0 24px;
+}
+
+/* ── FLASH ── */
+.flash {
+  padding: 12px 18px;
+  border-radius: 6px;
+  margin-bottom: 22px;
+  font-weight: 500;
+  font-size: .95rem;
+}
+.flash.success { background: var(--success); color: #fff; }
+.flash.danger  { background: var(--danger);  color: #fff; }
+
+/* ── PAGE TITLE ── */
+.page-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  letter-spacing: 2px;
+  color: var(--ciano);
+  margin-bottom: 28px;
+}
+
+/* ── CARD TABLE ── */
+.card {
+  background: var(--azul);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,.4);
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+thead th {
+  background: var(--escuro);
+  color: var(--ciano);
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 2px;
+  font-size: 1rem;
+  padding: 14px 18px;
+  text-align: left;
+}
+tbody tr {
+  border-bottom: 1px solid rgba(255,255,255,.07);
+  transition: background .15s;
+}
+tbody tr:hover { background: rgba(0,180,216,.07); }
+tbody td {
+  padding: 13px 18px;
+  font-size: .95rem;
+  color: var(--branco);
+}
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: .8rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+.badge-temperado  { background: #0096c7; color: #fff; }
+.badge-laminado   { background: #2a9d8f; color: #fff; }
+.badge-comum      { background: #457b9d; color: #fff; }
+.badge-outros     { background: #6c757d; color: #fff; }
+
+/* ── BUTTONS ── */
+.btn {
+  display: inline-block;
+  padding: 7px 16px;
+  border-radius: 6px;
+  font-size: .85rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  transition: opacity .2s, transform .1s;
+}
+.btn:hover { opacity: .85; transform: translateY(-1px); }
+.btn-edit   { background: var(--ciano); color: var(--escuro); }
+.btn-delete { background: var(--danger); color: #fff; }
+.btn-primary {
+  background: var(--ciano);
+  color: var(--escuro);
+  font-size: 1rem;
+  padding: 11px 28px;
+}
+.btn-secondary {
+  background: transparent;
+  color: var(--cinza);
+  border: 1px solid var(--cinza);
+  font-size: 1rem;
+  padding: 11px 28px;
+}
+
+/* ── EMPTY STATE ── */
+.empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--cinza);
+}
+.empty span { font-size: 3rem; display: block; margin-bottom: 12px; }
+
+/* ── FORM ── */
+.form-card {
+  background: var(--azul);
+  border-radius: 10px;
+  padding: 36px 40px;
+  box-shadow: 0 8px 32px rgba(0,0,0,.4);
+  max-width: 520px;
+}
+.form-group { margin-bottom: 22px; }
+label {
+  display: block;
+  font-size: .85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--cinza);
+  margin-bottom: 7px;
+}
+input, select {
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: 6px;
+  border: 1.5px solid rgba(255,255,255,.1);
+  background: var(--escuro);
+  color: var(--branco);
+  font-size: 1rem;
+  font-family: 'DM Sans', sans-serif;
+  transition: border-color .2s;
+  outline: none;
+}
+input:focus, select:focus { border-color: var(--ciano); }
+select option { background: var(--escuro); }
+
+.form-actions { display: flex; gap: 14px; margin-top: 28px; }
+
+footer {
+  text-align: center;
+  padding: 30px;
+  color: var(--cinza);
+  font-size: .8rem;
+  opacity: .6;
+}
+```
+
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🪟 Vidraçaria</h1>
+  <nav>
+    <a href="{{ url_for('index') }}">Lista</a>
+    <a href="{{ url_for('criar_vidro') }}">+ Novo Vidro</a>
+  </nav>
+</header>
+
+<main>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+      <div class="flash {{ category }}">{{ message }}</div>
+    {% endfor %}
+  {% endwith %}
+
+{% block content %}{% endblock %}
+
+</main>
+
+<footer>Vidraçaria CRUD &copy; {{ 2025 }}</footer>
+
+</body>
+</html>
