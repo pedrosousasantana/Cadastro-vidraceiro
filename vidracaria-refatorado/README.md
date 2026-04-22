@@ -34,3 +34,5 @@ Para testar as operações CRUD direto no terminal, sem precisar do servidor:
 ```bash
 python crudcodigo.py
 ```
+
+-
