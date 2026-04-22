@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}Lista de Vidros{% endblock %}
+
+{% block content %}
+
+<div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:28px;">
+  <h2 class="page-title" style="margin:0;">Lista de Vidros</h2>
+  <a href="{{ url_for('criar_vidro') }}" class="btn btn-primary">+ Cadastrar Vidro</a>
+</div>
+
+<div class="card">
+  {% if vidros %}
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Tipo</th>
+        <th>Preço</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for v in vidros %}
+      <tr>
+        <td><strong>#{{ v.id }}</strong></td>
+        <td>{{ v.nome }}</td>
+        <td>
+          <span class="badge badge-{{ v.tipo | lower }}">{{ v.tipo }}</span>
+        </td>
+        <td>R$ {{ "%.2f" | format(v.preco) }}</td>
+        <td>
+          <a href="{{ url_for('atualizar_vidro', vidro_id=v.id) }}" class="btn btn-edit">Editar</a>
+
+          <form method="POST" action="{{ url_for('deletar_vidro', vidro_id=v.id) }}"
+                style="display:inline;"
+                onsubmit="return confirm('Tem certeza que deseja remover {{ v.nome }}?')">
+            <button type="submit" class="btn btn-delete">Deletar</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <div class="empty">
+    <span>🪟</span>
+    Nenhum vidro cadastrado ainda.<br>
+    <a href="{{ url_for('criar_vidro') }}" style="color:var(--ciano); margin-top:12px; display:inline-block;">
+      Cadastrar o primeiro vidro →
+    </a>
+  </div>
+  {% endif %}
+</div>
+
+{% endblock %}

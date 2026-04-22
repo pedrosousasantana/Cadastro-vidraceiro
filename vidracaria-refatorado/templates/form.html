@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}{{ acao }} Vidro{% endblock %}
+
+{% block content %}
+
+<h2 class="page-title">{{ acao }} Vidro</h2>
+
+<div class="form-card">
+  <form method="POST">
+    <div class="form-group">
+      <label for="nome">Nome do Vidro</label>
+      <input
+        type="text"
+        id="nome"
+        name="nome"
+        placeholder="Ex: Vidro Temperado 8mm"
+        value="{{ vidro.nome if vidro else '' }}"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="tipo">Tipo</label>
+      <select id="tipo" name="tipo" required>
+        <option value="" disabled {% if not vidro %}selected{% endif %}>Selecione o tipo...</option>
+        {% for opcao in ["temperado", "comum", "laminado"] %}
+          <option value="{{ opcao }}"
+            {% if vidro and vidro.tipo == opcao %}selected{% endif %}>
+            {{ opcao | capitalize }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="preco">Preço (R$)</label>
+      <input
+        type="text"
+        id="preco"
+        name="preco"
+        placeholder="Ex: 150.00"
+        value="{{ '%.2f' | format(vidro.preco) if vidro else '' }}"
+        required
+      />
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">{{ acao }}</button>
+      <a href="{{ url_for('index') }}" class="btn btn-secondary">Cancelar</a>
+    </div>
+  </form>
+</div>
+
+{% endblock %}
