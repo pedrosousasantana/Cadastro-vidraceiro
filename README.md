@@ -1,6 +1,6 @@
 # Vidraçaria CRUD
 
-Sistema de cadastro de vidros com Flask.
+Sistema de cadastro de vidros com Flask
 
 ## Estrutura
 
